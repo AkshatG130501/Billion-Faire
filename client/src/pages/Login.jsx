@@ -20,11 +20,11 @@ function Login() {
         <form onSubmit={handleSubmit}>
         <div className='flex flex-col justify-center items-center mt-5 space-y-4'>
             <div className='flex flex-col'>
-            <label className='text-gray-300' htmlFor="">Email</label>
+            <label className='text-gray-300' htmlFor="">Email<span className="text-red-500">*</span></label>
             <input value={email} onChange={(e) => setEmail(e.target.value)} className='w-[450px] rounded h-[35px]' type="email"/>
             </div>
             <div className='flex flex-col'>
-            <label className='text-gray-300' htmlFor="">Password</label>
+            <label className='text-gray-300' htmlFor="">Password<span className="text-red-500">*</span></label>
             <input value={password} onChange={(e)=>setPassword(e.target.value)} className='w-[450px] rounded h-[35px]' type="password"/>
             </div>
         </div>
