@@ -9,7 +9,7 @@ function Input() {
   const [wallet, setWallet] = useState(10000.00);
 
 const fetchData = () => {
-    axios.get('http://localhost:3000/')
+    axios.get('http://localhost:5000/')
         .then((response) => {
             const fetchedMaxValue = response.data.maxValue;
             setValue(fetchedMaxValue);
