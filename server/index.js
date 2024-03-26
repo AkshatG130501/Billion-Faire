@@ -12,14 +12,14 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-    origin: "*",
+    origin: true,
     credentials: true,
   }));
 
 // const game_hash = generateRandomHash();
 app.use(cookieParser());
 app.use(express.json());
-// app.use('/api/auth',authRoutes);
+app.use('/api/auth',authRoutes);
 
 app.get('/',(req,res)=>{
     const result = get_result(generateRandomHash());

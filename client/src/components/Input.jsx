@@ -9,7 +9,7 @@ function Input() {
   const [wallet, setWallet] = useState(10000.00);
 
 const fetchData = () => {
-    axios.get('/')
+    axios.get(`${String(import.meta.env.VITE_BACKEND_URL)}`)
         .then((response) => {
             const fetchedMaxValue = response.data.maxValue;
             setValue(fetchedMaxValue);
