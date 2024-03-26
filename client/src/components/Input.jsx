@@ -9,7 +9,7 @@ function Input() {
   const [wallet, setWallet] = useState(10000.00);
 
 const fetchData = () => {
-    axios.get('https://billion-faire.vercel.app/')
+    axios.get('https://billion-faire.onrender.com/')
         .then((response) => {
             const fetchedMaxValue = response.data.maxValue;
             setValue(fetchedMaxValue);
