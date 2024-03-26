@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use('/api/auth',authRoutes);
 
-app.get('/',(req,res)=>{
+app.get('https://billion-faire.vercel.app/',(req,res)=>{
     const result = get_result(generateRandomHash());
     console.log(result);
     res.json({'maxValue':result});
