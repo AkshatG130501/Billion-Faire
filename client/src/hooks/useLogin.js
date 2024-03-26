@@ -11,6 +11,7 @@ const useLogin = () => {
 		if (!success) return;
 		setLoading(true);
 		try {
+			console.log(String(import.meta.env.VITE_BACKEND_URL));
 			const res = await fetch(`${String(import.meta.env.VITE_BACKEND_URL)}/api/auth/login`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
