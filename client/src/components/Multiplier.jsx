@@ -22,20 +22,26 @@ const Multiplier = ({val,target,wallet}) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-
-            if(value>=val && value<target){
+            if (value >= val && value < target) {
                 setColor('text-red-500');
-            }    
-            else if (value < val) {
-                if(value>=target){
+            } else if (value < val) {
+                if (value >= target) {
                     setShowCashout(true);
                     setColor('text-green-500');
                 }
-                setValue(prevValue => prevValue + 0.01);
-            }else {
+                let increment;
+                if(val<5) increment = 0.03;
+                else if(val>=5 && val<=10) increment = 0.10;
+                else if(val>10 && val<20) increment = 0.20;
+                else if(val>=20 && val<30) increment = 0.30;
+                else if(val>=30 && val<40) increment = 0.40;
+                else if(val>=40 && val<50) increment = 0.50;
+                else if(val>=50) increment = 1.01;
+                setValue(prevValue => prevValue + increment);
+            } else {
                 clearInterval(interval);
             }
-        }, 1); 
+        }, 0.1);
 
         return () => {
             clearInterval(interval);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Multiplier } from './index';
+import toast from 'react-hot-toast';
 
 function Input() {
   const [value, setValue] = useState(0);
@@ -8,36 +9,44 @@ function Input() {
   const [betAmount, setBetAmount] = useState(0);    
   const [wallet, setWallet] = useState(10000.00);
 
-const fetchData = () => {
-    axios.get(`${String(import.meta.env.VITE_BACKEND_URL)}`)
+const fetchData = async () => {
+    await axios.get(`${String(import.meta.env.VITE_BACKEND_URL)}`)
         .then((response) => {
             const fetchedMaxValue = response.data.maxValue;
             setValue(fetchedMaxValue);
+            if(fetchedMaxValue>=target){
+                setWallet(wallet+(betAmount*target - betAmount));
+            }else{
+                setWallet(wallet-betAmount);
+            }
         })
         .catch((error) => {
             console.error('Error fetching maxValue: ', error);
         });
 };
 
-const handleClick = () => {
+const handleClick = async() => {
     if(betAmount<=wallet){
-        fetchData();
-        if(value>=target){
-            setWallet(wallet+(betAmount*target - betAmount));
-        }else{
-            setWallet(wallet-betAmount);
-        }
+        await fetchData();
+        // if(value>=target){
+        //     setWallet(wallet+(betAmount*target - betAmount));
+        // }else{
+        //     setWallet(wallet-betAmount);
+        // }
     }else{
-        alert('Insufficient funds');
+        // alert('Insufficient funds');
+        toast.error('Insufficient funds');
     }
 };
 
 const handlebetChange = (e) => {
     if(e.target.value>wallet){
-        alert('Insufficient funds');
+        // alert('Insufficient funds');
+        toast.error('Insufficient funds');
     }
     else if(e.target.value<0){
-        alert('Invalid amount');
+        // alert('Invalid amount');
+        toast.error('Invalid amount');
     }
     else{
         setBetAmount(e.target.value);
@@ -50,7 +59,8 @@ const convertHalf = () => {
 
 const convertDouble = () => {
     if(betAmount*2>wallet){
-        alert('Insufficient funds');
+        // alert('Insufficient funds');
+        toast.error('Insufficient funds');
     }else{
         setBetAmount(betAmount*2);
     }
@@ -58,7 +68,8 @@ const convertDouble = () => {
 
 const handleTargetChange = (e) => {
     if(e.target.value<0){
-        alert('Invalid Target Multiplier');
+        // alert('Invalid Target Multiplier');
+        toast.error('Invalid Target Multiplier');
     }else{
         setTarget(e.target.value);
     }
