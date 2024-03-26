@@ -19,7 +19,7 @@ app.use(cors({
 // const game_hash = generateRandomHash();
 app.use(cookieParser());
 app.use(express.json());
-app.use('/api/auth',authRoutes);
+// app.use('/api/auth',authRoutes);
 
 app.get('https://billion-faire.vercel.app/',(req,res)=>{
     const result = get_result(generateRandomHash());
