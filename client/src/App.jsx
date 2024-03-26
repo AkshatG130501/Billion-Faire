@@ -16,7 +16,7 @@ function App() {
       <Route>
         <Route path='/' element={authUser ? <Navigate to='/game' /> : <Login/>}/>
         <Route path='/signup' element={authUser ? <Navigate to='/game' /> : <Signup/>}/>
-        <Route path='/game' element={authUser ? <Home /> : <Navigate to="/" replace />}/>
+        <Route path='/game' element={<AuthGuard>authUser ? <Home /> : <Navigate to="/" replace /></AuthGuard>}/>
       </Route>
     )
   )
