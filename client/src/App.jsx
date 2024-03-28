@@ -6,6 +6,7 @@ import Signup from './pages/Signup.jsx'
 import {  useAuthContext } from './context/AuthContext.jsx'
 import AuthGuard from "./components/AuthGuard.jsx"
 import { Toaster } from "react-hot-toast";
+import Deposit from "./pages/Deposit.jsx"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/' element={authUser ? <Navigate to='/game' /> : <Login/>}/>
         <Route path='/signup' element={authUser ? <Navigate to='/game' /> : <Signup/>}/>
         <Route path='/game' element={<AuthGuard>{authUser ? <Home /> : <Navigate to="/" replace />}</AuthGuard>}/>
+        <Route path='/deposit' element={<AuthGuard>{authUser ? <Deposit /> : <Navigate to="/" replace />}</AuthGuard>}/>
       </Route>
     )
   )

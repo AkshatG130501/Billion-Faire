@@ -28,11 +28,11 @@ const fetchData = async () => {
 const handleClick = async() => {
     if(betAmount<=wallet){
         await fetchData();
-        // if(value>=target){
-        //     setWallet(wallet+(betAmount*target - betAmount));
-        // }else{
-        //     setWallet(wallet-betAmount);
-        // }
+        if(value>=target){
+            setWallet(wallet+(betAmount*target - betAmount));
+        }else{
+            setWallet(wallet-betAmount);
+        }
     }else{
         // alert('Insufficient funds');
         toast.error('Insufficient funds');

@@ -6,8 +6,17 @@ const Multiplier = ({val,target,wallet}) => {
     const [value, setValue] = useState(0);
     const [color,setColor] = useState('text-white');
     const [showCashout, setShowCashout] = useState(false);
+    // const [wallet, setWallet] = useState(0.00);
 
     useEffect(() => {
+        fetch(`${String(import.meta.env.VITE_BACKEND_URL)}`)
+        .then((res)=> res.json())
+        .then(data => {
+            setWallet(data.wallet)
+        })
+        .catch((error) => {
+            console.error('Error fetching wallet: ', error);
+        })
         setValue(0);
         setColor('text-white');
     }, [val]);
@@ -52,7 +61,10 @@ const Multiplier = ({val,target,wallet}) => {
 
     return(
     <div className='flex flex-col justify-between items-center bg-slate-900 h-[600px] w-[800px] rounded-r'>
+        <div className='flex'>
+        {/* <MetaMask /> */}
         <Wallet wallet={wallet} />
+        </div>
         <h2 className={`text-[100px] ${color} font-bold `}>{value.toFixed(2)}x</h2>
         <div className='mb-4'>
             {showCashout && <Target target={target}/>}

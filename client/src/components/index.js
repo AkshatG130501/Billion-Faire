@@ -4,6 +4,7 @@ import Target from "./Target";
 import Wallet from "./Wallet";
 import Navbar from "./Navbar";
 import LogoutBtn from "./LogoutBtn";
+import MetaMask from "./WalletCard";
 
 export { 
     Multiplier, 
@@ -11,5 +12,6 @@ export {
     Target,
     Wallet,
     Navbar,
-    LogoutBtn
+    LogoutBtn,
+    MetaMask
 };

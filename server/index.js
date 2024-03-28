@@ -7,6 +7,7 @@ import connectToMongoDB from "./db/connectToMongoDB.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import protectRoute  from "./middleware/protectRoute.js";
+import User from "./models/user.model.js";
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use('/api/auth',authRoutes);
 
-app.get('/',(req,res)=>{
+app.get('/',async(req,res)=>{
     const result = get_result(generateRandomHash());
     console.log(result);
     res.json({'maxValue':result});
