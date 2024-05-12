@@ -6,6 +6,7 @@ function Navbar() {
 
   const [selectedOption, setSelectedOption] = useState('');
   const navigate = useNavigate();
+  const {username} = JSON.parse(localStorage.getItem('authUser'));
 
   const handleOptionChange = (e) => {
     const selectedValue = e.target.value;
@@ -33,7 +34,12 @@ function Navbar() {
             <option value="2">Withdraw</option>
           </select>
         </div>
-        <div className='flex mr-4'>
+        
+        <div className='flex mr-4 items-center space-x-2'>
+        <div className='flex items-center'>
+                <div className='text-white font-semibold text-lg'>{username}</div>
+                <img className='w-10 h-10 rounded-full' src='/office-man.png' alt='user' />
+        </div>
             <LogoutBtn />
         </div>
     </div>
